@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  devtools:
+    restart:
+      enabled: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    dev.sleeptime: DEBUG
+    org.hibernate.SQL: DEBUG
