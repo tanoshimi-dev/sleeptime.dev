@@ -19,9 +19,9 @@ Auth0 Dashboard → Applications → Create Application
 | --------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | Name                  | Sleeptime Portal Backend                                                                                              |
 | Application Type      | Regular Web Application                                                                                               |
-| Allowed Callback URLs | `http://localhost:8080/login/oauth2/code/auth0` (dev), `https://backend.sleeptime.dev/login/oauth2/code/auth0` (prod) |
-| Allowed Logout URLs   | `http://localhost:3000` (dev), `https://sleeptime.dev` (prod)                                                         |
-| Allowed Web Origins   | `http://localhost:3000` (dev), `https://sleeptime.dev` (prod)                                                         |
+| Allowed Callback URLs | `http://localhost:3000/auth/callback, https://sleeptime.dev/auth/callback` |
+| Allowed Logout URLs   | `http://localhost:3000, https://sleeptime.dev` |
+| Allowed Web Origins   | `http://localhost:3000, https://sleeptime.dev` |
 
 記録する値:
 
