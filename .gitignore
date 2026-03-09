@@ -31,7 +31,7 @@ bin/
 *.war
 
 # === Docker ===
-docker-compose.override.yml
+**/docker-compose.prod.yml
 
 # === Database / Redis ===
 *.sql.bak
