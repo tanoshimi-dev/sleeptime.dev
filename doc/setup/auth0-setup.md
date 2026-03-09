@@ -3,7 +3,7 @@
 ## 1. テナント情報
 
 - **Tenant Name**: `dev-ll413keejpz65qwc`
-- **Domain**: `dev-ll413keejpz65qwc.auth0.com`
+- **Domain**: `dev-ll413keejpz65qwc.us.auth0.com`
 
 ※ テナント名は変更不可
 
@@ -25,7 +25,7 @@ Auth0 Dashboard → Applications → Create Application
 
 記録する値:
 
-- **Domain**: `dev-ll413keejpz65qwc.auth0.com`
+- **Domain**: `dev-ll413keejpz65qwc.us.auth0.com`
 - **Client ID**: （自動生成される）
 - **Client Secret**: （自動生成される）
 
@@ -78,14 +78,14 @@ Auth0 Dashboard → Authentication → Social
 
 1. Social → Google を有効化
 2. Google Cloud Console で OAuth 2.0 Client ID を作成
-   - Authorized redirect URI: `https://dev-ll413keejpz65qwc.auth0.com/login/callback`
+   - Authorized redirect URI: `https://dev-ll413keejpz65qwc.us.auth0.com/login/callback`
 3. Client ID と Client Secret を Auth0 に設定
 
 #### GitHub
 
 1. Social → GitHub を有効化
 2. GitHub → Settings → Developer settings → OAuth Apps で新規作成
-   - Authorization callback URL: `https://dev-ll413keejpz65qwc.auth0.com/login/callback`
+   - Authorization callback URL: `https://dev-ll413keejpz65qwc.us.auth0.com/login/callback`
 3. Client ID と Client Secret を Auth0 に設定
 
 ---
@@ -157,13 +157,13 @@ SPRING_PROFILES_ACTIVE=prod
 SERVER_PORT=8080
 
 # === Auth0 ===
-AUTH0_DOMAIN=dev-ll413keejpz65qwc.auth0.com
+AUTH0_DOMAIN=dev-ll413keejpz65qwc.us.auth0.com
 AUTH0_CLIENT_ID=（Auth0 で取得した Client ID）
 AUTH0_CLIENT_SECRET=（Auth0 で取得した Client Secret）
 AUTH0_AUDIENCE=https://api.sleeptime.dev
 AUTH0_SECRET=（openssl rand -hex 32 で生成）
 AUTH0_BASE_URL=https://sleeptime.dev
-AUTH0_ISSUER_BASE_URL=https://dev-ll413keejpz65qwc.auth0.com
+AUTH0_ISSUER_BASE_URL=https://dev-ll413keejpz65qwc.us.auth0.com
 
 # === Frontend ===
 NEXT_PUBLIC_API_URL=https://backend.sleeptime.dev
@@ -184,7 +184,7 @@ DB_PASSWORD=sleeptime_dev_password
 REDIS_HOST=redis
 REDIS_PORT=6379
 SPRING_PROFILES_ACTIVE=dev
-AUTH0_DOMAIN=dev-ll413keejpz65qwc.auth0.com
+AUTH0_DOMAIN=dev-ll413keejpz65qwc.us.auth0.com
 AUTH0_CLIENT_ID=（Auth0 で取得した Client ID）
 AUTH0_CLIENT_SECRET=（Auth0 で取得した Client Secret）
 AUTH0_AUDIENCE=https://api.sleeptime.dev
@@ -193,12 +193,12 @@ AUTH0_AUDIENCE=https://api.sleeptime.dev
 #### Frontend用: `sys/frontend/.env.local`
 
 ```
-AUTH0_DOMAIN=dev-ll413keejpz65qwc.auth0.com
+AUTH0_DOMAIN=dev-ll413keejpz65qwc.us.auth0.com
 AUTH0_CLIENT_ID=（Auth0 で取得した Client ID）
 AUTH0_CLIENT_SECRET=（Auth0 で取得した Client Secret）
 AUTH0_SECRET=（openssl rand -hex 32 で生成）
 AUTH0_BASE_URL=http://localhost:3000
-AUTH0_ISSUER_BASE_URL=https://dev-ll413keejpz65qwc.auth0.com
+AUTH0_ISSUER_BASE_URL=https://dev-ll413keejpz65qwc.us.auth0.com
 AUTH0_AUDIENCE=https://api.sleeptime.dev
 ```
 
