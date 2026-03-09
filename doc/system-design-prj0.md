@@ -3,7 +3,7 @@
 ## 1. Introduction
 
 sleeptime.devは、複数のサブシステム（例：prj1.sleeptime.dev、prj2.sleeptime.dev）を持つ大規模なプロジェクトであり、これらのサブシステム全体で統一されたユーザー管理と認証基盤が必要です。
-prj0はそのための**中央集権的なユーザーポータル**を構築するプロジェクトです。このポータルは、Auth0をアイデンティティプロバイダーとして利用し、ユーザー登録、ログイン、プロファイル管理、組織管理、サブシステムへのアクセス制御などの機能を提供します。
+prj0はそのための**中央集権的なユーザーポータル**を構築するプロジェクトです。このポータルは、Auth0をアイデンティティプロバイダーとして利用し、ユーザー登録、ログイン、プロファイル管理、サブシステムへのアクセス制御などの機能を提供します。
 
 ## 2. Infrastructure
 
@@ -45,7 +45,7 @@ sleeptime.dev/               ← Portal (prj0) — this repository
 
 | Role                 | Description                                                       |
 | -------------------- | ----------------------------------------------------------------- |
-| Super Admin          | Portal-level admin — manages all users, orgs, sub-systems         |
+| Super Admin          | Portal-level admin — manages all users, sub-systems               |
 | End User             | Regular user — logs in, manages own profile, accesses sub-systems |
 | Sub-system (Machine) | Downstream application that validates tokens and syncs users      |
 
@@ -147,7 +147,6 @@ User → Sub-system App → sends JWT in Authorization header
 | Permission             | Super Admin | End User | Sub-system (M2M) |
 | ---------------------- | :---------: | :------: | :--------------: |
 | Manage all users       |      ✓      |          |                  |
-| Manage organizations   |      ✓      |          |                  |
 | View/edit own profile  |      ✓      |    ✓     |                  |
 | Access sub-systems     |      ✓      |    ✓     |                  |
 | Validate tokens (JWKS) |             |          |        ✓         |
@@ -161,32 +160,25 @@ User → Sub-system App → sends JWT in Authorization header
 
 ```
 ┌─────────────┐       ┌──────────────────┐       ┌──────────────┐
-│   users      │──────►│ user_org_roles    │◄──────│ organizations│
+│   users      │──────►│ user_subsystems   │◄──────│ subsystems   │
 │              │       │                  │       │              │
 │ id (PK)      │       │ user_id (FK)     │       │ id (PK)      │
-│ auth0_sub    │       │ org_id (FK)      │       │ name         │
-│ email        │       │ role             │       │ slug         │
-│ display_name │       └──────────────────┘       │ created_at   │
-│ avatar_url   │                                  └──────────────┘
+│ auth0_sub    │       │ subsystem_id (FK)│       │ slug         │
+│ email        │       │ role (ENUM)      │       │ name         │
+│ display_name │       │ enabled          │       │ base_url     │
+│ avatar_url   │       │ granted_at       │       │ client_id    │
+│ role (ENUM)  │       └──────────────────┘       └──────────────┘
 │ locale       │
-│ created_at   │       ┌──────────────────┐
-│ updated_at   │──────►│ user_subsystems   │
-└─────────────┘       │                  │       ┌──────────────┐
-                       │ user_id (FK)     │◄──────│ subsystems   │
-                       │ subsystem_id (FK)│       │              │
-                       │ enabled          │       │ id (PK)      │
-                       │ granted_at       │       │ slug         │
-                       └──────────────────┘       │ name         │
-                                                  │ base_url     │
-                                                  │ client_id    │
-                                                  └──────────────┘
+│ created_at   │
+│ updated_at   │
+└─────────────┘
 ```
 
 ### 6.2 Auth0 Sync Strategy
 
 - ユーザー作成・更新時にAuth0 Management APIを使用してAuth0側と同期
 - Auth0のuser_idは `auth0_sub` としてローカルDBに保存
-- Auth0 Post-Login Actionでカスタムクレーム（roles, org_id）をトークンに付与
+- Auth0 Post-Login Actionでカスタムクレーム（role）をトークンに付与
 
 ---
 
@@ -202,8 +194,6 @@ User → Sub-system App → sends JWT in Authorization header
 | GET    | /api/users/me            | Get current user profile    |
 | PATCH  | /api/users/me            | Update current user profile |
 | GET    | /api/admin/users         | List all users (admin)      |
-| GET    | /api/admin/organizations | List organizations (admin)  |
-| POST   | /api/admin/organizations | Create organization (admin) |
 | GET    | /api/admin/subsystems    | List sub-systems (admin)    |
 
 ### 7.2 M2M Endpoints (for sub-systems)

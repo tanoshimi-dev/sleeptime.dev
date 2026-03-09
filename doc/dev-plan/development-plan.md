@@ -89,8 +89,6 @@ sleeptime.devの中央ユーザー管理ポータルの開発計画。
 
 - [ ] Flyway (or Liquibase) によるマイグレーション管理導入
 - [ ] `users` テーブル作成
-- [ ] `organizations` テーブル作成
-- [ ] `user_org_roles` テーブル作成
 - [ ] `subsystems` テーブル作成
 - [ ] `user_subsystems` テーブル作成
 
@@ -116,9 +114,9 @@ sleeptime.devの中央ユーザー管理ポータルの開発計画。
 
 ---
 
-## Phase 4: Admin Features & Organization Management
+## Phase 4: Admin Features & User Management
 
-**Goal**: 管理者機能と組織管理の実装
+**Goal**: 管理者機能とユーザー管理の実装
 
 ### 4.1 Admin API
 
@@ -126,27 +124,23 @@ sleeptime.devの中央ユーザー管理ポータルの開発計画。
 - [ ] `GET /api/admin/users/:id` — ユーザー詳細
 - [ ] `PATCH /api/admin/users/:id` — ユーザー情報更新（ロール変更など）
 - [ ] `DELETE /api/admin/users/:id` — ユーザー無効化
-- [ ] `GET /api/admin/organizations` — 組織一覧
-- [ ] `POST /api/admin/organizations` — 組織作成
-- [ ] `PATCH /api/admin/organizations/:id` — 組織更新
 - [ ] `GET /api/admin/subsystems` — サブシステム一覧
 
 ### 4.2 RBAC Implementation
 
-- [ ] Auth0 カスタムクレーム（roles, org_id）をPost-Login Actionで付与
+- [ ] Auth0 カスタムクレーム（role）をPost-Login Actionで付与
 - [ ] Spring Security `@PreAuthorize` によるロールベースアクセス制御
 - [ ] Super Admin / End User ロールの判定ロジック
 
 ### 4.3 Admin Frontend
 
 - [ ] ユーザー管理画面（一覧、検索、詳細、編集）
-- [ ] 組織管理画面（一覧、作成、編集）
 - [ ] サブシステム管理画面
 - [ ] Admin用ナビゲーション（ロールに応じた表示切替）
 
 ### 4.4 Deliverables
 
-- Super Adminがユーザー・組織・サブシステムを管理できること
+- Super Adminがユーザー・サブシステムを管理できること
 - End Userは管理画面にアクセスできないこと
 - RBACが正しく機能すること
 
@@ -196,7 +190,7 @@ sleeptime.devの中央ユーザー管理ポータルの開発計画。
 - [ ] ユーザー招待メール
 - [ ] パスワードリセット（Auth0 経由）
 - [ ] メールアドレス変更確認
-- [ ] 組織への招待通知
+- [ ] アカウント関連通知（ロール変更、サブシステムアクセス付与など）
 
 ### 6.3 Deliverables
 
@@ -271,7 +265,7 @@ sleeptime.devの中央ユーザー管理ポータルの開発計画。
 | 1     | Project Scaffolding & Local Dev | —          |
 | 2     | Auth0 Integration & Auth      | Phase 1      |
 | 3     | User Profile & Data Model     | Phase 2      |
-| 4     | Admin & Organization Mgmt     | Phase 3      |
+| 4     | Admin & User Management       | Phase 3      |
 | 5     | Sub-system Integration (M2M)  | Phase 3      |
 | 6     | Email & Notifications         | Phase 4      |
 | 7     | Additional Auth & Polish       | Phase 4      |
