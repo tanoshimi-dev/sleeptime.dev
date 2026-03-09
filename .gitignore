@@ -1,0 +1,44 @@
+# === IDE ===
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+
+# === OS ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === Environment ===
+.env
+.env.*
+!.env.example
+
+# === Node / Frontend (Next.js) ===
+node_modules/
+.next/
+out/
+.pnpm-store/
+*.tsbuildinfo
+
+# === Java / Backend (Spring Boot / Gradle) ===
+build/
+.gradle/
+bin/
+*.class
+*.jar
+*.war
+
+# === Docker ===
+docker-compose.override.yml
+
+# === Database / Redis ===
+*.sql.bak
+dump.rdb
+
+# === Logs ===
+logs/
+*.log
+
+memo
