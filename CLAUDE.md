@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Central user management portal for the sleeptime.dev ecosystem. Provides unified authentication, user profiles, organization management, and access control across all sub-systems (prj1, prj2, ...).
+Central user management portal for the sleeptime.dev ecosystem. Provides unified authentication, user profiles, and access control across all sub-systems (prj1, prj2, ...).
 
 ## Tech Stack
 
@@ -12,7 +12,7 @@ Central user management portal for the sleeptime.dev ecosystem. Provides unified
 - **Database**: PostgreSQL (self-hosted)
 - **Cache/Sessions**: Redis (self-hosted)
 - **API Contracts**: TypeSpec
-- **Reverse Proxy**: Traefik v3 (Docker-native, auto SSL)
+- **Reverse Proxy**: Traefik v3 (production VPS only, not used in local dev)
 - **Build Tools**: Gradle (backend), pnpm (frontend)
 - **Containers**: Docker + Docker Compose
 
@@ -24,9 +24,12 @@ sleeptime.dev/
 ├── doc/                 ← design docs, API specs
 │   ├── dev-plan/        ← development plans
 │   └── system-design-prj0.md
-└── sys/                 ← system resources
+└── sys/                 ← ALL system resources
+    ├── docker-compose.yml
+    ├── .env.example
     ├── backend/         ← Spring Boot API
-    └── frontend/        ← Next.js SPA
+    ├── frontend/        ← Next.js SPA
+    └── db/              ← Database init scripts
 ```
 
 ## URL Convention
@@ -37,5 +40,5 @@ sleeptime.dev/
 ## Development Notes
 
 - Documentation is written in a mix of Japanese and English
-- Project is currently in the design/planning phase
 - Design doc: `doc/system-design-prj0.md`
+- Docker commands run from `sys/` directory: `cd sys && docker compose up --build`

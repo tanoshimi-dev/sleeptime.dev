@@ -5,7 +5,9 @@
       "Bash(curl:*)",
       "Bash(./gradlew build:*)",
       "Bash(pnpm:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(docker compose:*)",
+      "Bash(rmdir:*)"
     ]
   }
 }
